@@ -1,0 +1,33 @@
+<div id="postId">
+	<div class="w-100 p-3 mb-5"  *ngFor="let p of post">
+		<div class="row">
+			<div class="col-sm-8">
+			  <div class="title h3">
+			  	{{p.title}}
+			  </div>
+			  <div class="desc">
+			  	{{p.description}}
+			  </div>
+			  <div class="date h5">
+			  	Date of Post :{{p.dateposted}}
+			  </div>
+			</div>	
+			<div class="col-sm-4">
+			 	<img class="shadow-lg" [src]="p.image" alt="some nice images" id="imgg">
+			</div>	
+		</div>
+		<div class="row">
+			<div class="form-group">
+			  <form #fc="ngForm">
+			 	<input ngModel class="form-control" type="text" name="comment" 
+			 	#comment="ngModel" placeholder="comment"
+			 	 (keyup.enter)="saveComment(fc.value,p.keyId)">
+			  </form>	
+			</div>
+		</div>
+		<div class="row" *ngFor="let comment of p.comments">
+		  <div class="col-sm-10 m-1">{{comment}}</div>	
+	   </div>
+	</div>
+	<app-show-map></app-show-map>
+</div>
