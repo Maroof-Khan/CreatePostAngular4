@@ -1,3 +1,7 @@
 .form{
 	margin-top: 80px;
 }
+
+:host #discipline-qe /deep/ .ql-container{
+  height: 250px;
+}

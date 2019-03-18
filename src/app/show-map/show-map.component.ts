@@ -9,30 +9,25 @@ export class ShowMapComponent implements OnInit {
    lat:number;
    lng:number;
    text:string;
-  constructor() { }
+   hasData: boolean;
+  constructor() { this.hasData = false;}
 
    ngOnInit() {
-	  	this.lat = 28.569885199999998;
-	    this.lng = 77.259;
-	    function success(position) {
-	    this.lat  = position.coords.latitude;
-	    this.lng = position.coords.longitude;
-	     // console.log("lat ::"+this.lat+"lng ::"+this.lng);
-	    }
-	    function error() {
-	    	this.text = 'Unable to retrieve your location';
-	    }
-
 	    if (!navigator.geolocation) {
-	    this.text = 'Geolocation is not supported by your browser';
+	    	this.text = 'Geolocation is not supported by your browser';
 	    } else {
-	    this.text = 'Locating…';
-	    // console.log("lat in callback ::" +this.lat+"lng callback ::"+this.lng);
-	    navigator.geolocation.getCurrentPosition(success, error);
+	    	this.text = 'Locating…';
+	    	navigator.geolocation.getCurrentPosition(position => {
+    		this.lat  = position.coords.latitude;
+	    	this.lng = position.coords.longitude;
+	    	this.hasData = true;
+	    	// console.log("Data is recieved :: " + `lat ${this.lat}  lng ${this.lng} hasData ${this.hasData}`);
+	    }, error => {
+	    	this.hasData = false;
+	    	this.text = 'Unable to retrieve your location';
+	    	// console.log("hasData :: " + this.hasData);
+	    });
 	   }
-	   
-	    // console.log("lat in k ::" +this.lat+"lng k ::"+this.lng);
-
   }
 
 }

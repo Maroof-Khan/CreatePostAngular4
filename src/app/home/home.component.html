@@ -1,19 +1,14 @@
 <div id="postId">
-	<div class="w-100 p-3 mb-5"  *ngFor="let p of post">
+	<div class="w-100 mb-3"  *ngFor="let p of post">
 		<div class="row">
-			<div class="col-sm-8">
-			  <div class="title h3">
+			<div class="col-sm-12">
+			  <div class=" h3">
 			  	{{p.title}}
 			  </div>
-			  <div class="desc">
-			  	{{p.description}}
-			  </div>
-			  <div class="date h5">
+			   <div  [innerHTML]="p.description"></div>
+			  <div class=" date h5">
 			  	Date of Post :{{p.dateposted}}
 			  </div>
-			</div>	
-			<div class="col-sm-4">
-			 	<img class="shadow-lg" [src]="p.image" alt="some nice images" id="imgg">
 			</div>	
 		</div>
 		<div class="row">
@@ -30,4 +25,5 @@
 	   </div>
 	</div>
 	<app-show-map></app-show-map>
+
 </div>

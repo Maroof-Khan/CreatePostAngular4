@@ -1,4 +1,9 @@
 <h4>{{text}}</h4>
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
+
+<div *ngIf="hasData">
+	<agm-map [latitude]="lat" [longitude]="lng">
+	  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+	</agm-map>
+</div>
+
+

@@ -2,6 +2,14 @@ import { Component, OnInit,OnDestroy } from '@angular/core';
 import {CreatpostService} from './../creatpost.service';
 import {Subscription} from 'rxjs/Subscription';
 
+interface Post {
+  title: string,
+  dateposted: string,
+  description: string,
+  [propName: string]: any;
+}
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,9 +27,11 @@ export class HomeComponent implements OnInit,OnDestroy {
 
           let sortedListByDateDesc = val.slice().reverse(); 
   		    sortedListByDateDesc.forEach( data=>{
-          let temp = data.payload.toJSON();
+          
+          let  temp : Post; 
+          temp = data.payload.toJSON();
           temp["keyId"]= data.key;
-          temp.dateposted = new Date(temp.dateposted).toLocaleString();
+          temp["dateposted"] = new Date(temp.dateposted).toLocaleString();
           if(temp.comments !== undefined && temp.comments !== null){
             temp.comments = Object.values(temp.comments);  
           }
